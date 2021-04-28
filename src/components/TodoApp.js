@@ -10,7 +10,25 @@ const initialState = [{
 
 export const TodoApp = () => {
 
-    const [ todos ] = useReducer(todoReducer, initialState);
+    const [ todos, dispatch ] = useReducer(todoReducer, initialState);
+
+    const handleSubmit = ( e ) => {
+        
+        e.preventDefault();
+        const newTodo = {
+            id: new Date().getTime(),
+            desc: 'Aprender Django',
+            done: false
+        };
+
+        const action = {
+            type: 'add',
+            payload: newTodo
+        }
+
+        dispatch( action );
+
+    }
 
     return (
         <>
@@ -42,7 +60,7 @@ export const TodoApp = () => {
                 <div className="col-5">
                         <h4>Agregar TODO</h4>
                         <hr />
-                        <form>
+                        <form onSubmit={ handleSubmit }>
 
                             <input
                                 type="text"
@@ -53,6 +71,7 @@ export const TodoApp = () => {
                             />
 
                             <button
+                                type="submit"
                                 className="btn btn-outline-primary mt-1 btn-block"
                             >
                                 Agregar

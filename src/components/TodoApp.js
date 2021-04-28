@@ -10,7 +10,7 @@ const initialState = [{
 
 export const TodoApp = () => {
 
-    const [ state ] = useReducer(todoReducer, initialState);
+    const [ todos ] = useReducer(todoReducer, initialState);
 
     return (
         <>
